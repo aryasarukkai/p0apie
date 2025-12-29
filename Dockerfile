@@ -1,4 +1,4 @@
-FROM python:3.6.4-alpine3.7
+FROM python:3.11-alpine
 
 RUN apk add --no-cache git
 
@@ -6,9 +6,8 @@ ENV BASE_URL=https://thepiratebay.org/
 
 COPY requirements.txt requirements.txt
 
-RUN apk add --no-cache libxml2-dev && \
-    apk add --no-cache libxml2 && \
-    apk add --update --no-cache g++ gcc libxslt-dev && \
+RUN apk add --no-cache libxml2-dev libxml2 g++ gcc libxslt-dev && \
+    pip3 install --upgrade pip && \
     pip3 install -r ./requirements.txt
 
 
